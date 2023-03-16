@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context = "http://www.springframework.org/schema/context"
+       xmlns:util ="http://www.springframework.org/schema/util"
+       xmlns:p ="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:annotation-config/>
+
+    <!--Standalone List-->
+    <util:list list-class="java.util.LinkedList" id="mybestfriends">
+        <value>Pranjali</value>
+        <value>Abhimanyu</value>
+        <value>Akshit</value>
+        <value>Diksha</value>
+    </util:list>
+
+    <util:map map-class="java.util.HashMap" id="mycourses">
+        <entry key="Physics" value="5000"/>
+        <entry key="Data Science" value="12000"/>
+        <entry key="Cyber Security" value="10000"/>
+    </util:map>
+    <bean class="com.springcore.standalone.collections.Person" name="person">
+        <property name="friends">
+            <ref bean="mybestfriends"/>
+        </property>
+        <property name="feestructure" ref="mycourses"/>
+    </bean>
+
+    <bean class="com.springcore.standalone.collections.Person" name="person2">
+        <property name="friends">
+            <ref bean="mybestfriends"/>
+        </property>
+        <property name="feestructure" ref="mycourses"/>
+    </bean>
+
+</beans>

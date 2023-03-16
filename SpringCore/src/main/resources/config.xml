@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context = "http://www.springframework.org/schema/context"
+       xmlns:p ="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+       <bean class="com.springcore.Student" name="s1">
+           <!--Setter Injection-->
+           <property name="studentAddress" value="Palghar"/>
+           <property name="studentId">
+               <value>001</value>
+           </property>
+           <property name="studentName">
+               <value>Govind Chaurasiya</value>
+           </property>
+       </bean>
+
+    <bean class="com.springcore.Student" name="s2" p:studentAddress="Aurangabad" p:studentId="002" p:studentName="Pranjali"/>
+
+    <bean class="com.springcore.collection.Employee" name="e1">
+        <property name="address">
+            <list>
+                <value>Palghar</value>
+                <value>Siwan</value>
+            </list>
+        </property>
+
+        <property name="courses">
+            <map>
+                <entry key="java" value="2months"/>
+                <entry key="python" value="2months"/>
+            </map>
+        </property>
+
+        <property name="employeeName" value="Govind"/>
+        <property name="phones">
+            <set>
+                <value>967000</value>
+                <value>982038</value>
+            </set>
+        </property>
+
+        <property name="props">
+            <props>
+                <prop key="school">JNV</prop>
+                <prop key="college">NIIT</prop>
+            </props>
+        </property>
+    </bean>
+    <!-->Injecting reference type<-->
+    <bean class="com.springcore.ref.A" name="a1">
+        <property name="x" value="5"/>
+        <property name="obj">
+            <ref bean="b1"/>
+        </property>
+    </bean>
+    <bean class="com.springcore.ref.B" name="b1">
+        <property name="y" value="10"/>
+    </bean>
+
+    <!--> Constructor Injection <-->
+    <bean class="com.springcore.ci.Person" name="p1">
+
+        <constructor-arg index="0" value="Ram"/>
+        <constructor-arg index="1" value="001"/>
+        <constructor-arg index="2" ref="c1"/>
+    </bean>
+
+    <!--> Solution for ambiguity in constructor injection<-->
+    <bean class="com.springcore.ci.Certi" name="c1">
+        <constructor-arg index="0" value="Ram" type="java.lang.String"/>
+    </bean>
+
+    <!--> Bean Life Cycle <-->
+    <bean class="com.springcore.lifecycle.Child" name="ch" p:name="Raju" p:pocketMoney="12.10" init-method="init" destroy-method="destroy"/>
+    <bean class="com.springcore.lifecycle.Teacher" name ="tc" p:fees="2000.00"/>
+    <bean class="com.springcore.lifecycle.Tution" name="ti" p:location="Kota"/>
+
+</beans>
+
